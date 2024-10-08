@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposition</title>
+    <!-- Bootstrap CSS en ligne -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 56px;
+            margin: 0;
+            background-color: #e6f2ff; /* Fond bleu clair */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* S'assurer que le contenu prend au moins toute la hauteur de la fenêtre */
+        }
+        .content {
+            flex: 1; /* Le contenu prendra l'espace disponible, poussant le footer en bas */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            background: #3399ff; /* Bleu clair pour le pied de page */
+            color: #ffffff; /* Texte en blanc */
+            padding: 20px 15px;
+            text-align: center;
+        }
+        .header img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <img src="/images/hasnreziga.png" alt="Logo">
+</header>
+<div class="container content">
+    <div class="card col-md-6">
+        <h2 class="text-center">Proposition</h2>
+        <form action="/submit_proposition" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="titre">Titre du Livre</label>
+                <input type="text" class="form-control" id="titre" name="titre" required>
+            </div>
+            <div class="form-group">
+                <label for="auteur">Auteur du Livre</label>
+                <input type="text" class="form-control" id="auteur" name="auteur" required>
+            </div>
+            <div class="form-group">
+                <label for="pdf">Télécharger le Livre (PDF)</label>
+                <input type="file" class="form-control-file" id="pdf" name="pdf" accept="application/pdf" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Soumettre</button>
+        </form>
+    </div>
+</div>
+
+<!-- Pied de page -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 Bibliothèque. Tous droits réservés.</p>
+    </div>
+</footer>
+
+<!-- Scripts JavaScript en ligne -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

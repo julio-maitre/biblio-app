@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultations</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4a90e2, #9013fe); /* Dégradé bleu-violet */
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .btn-accueil {
+            background-color: #007bff; /* Couleur de fond */
+            color: white; /* Couleur du texte */
+            padding: 10px 20px; /* Espacement interne */
+            border: 2px solid #0056b3; /* Bordure */
+            border-radius: 5px; /* Bords arrondis */
+            text-decoration: none; /* Retire la sous-ligne du lien */
+        }
+
+        .btn-accueil:hover {
+            background-color: #0056b3; /* Couleur de fond au survol */
+            border-color: #003d80; /* Changement de couleur de la bordure au survol */
+        }
+
+        .navbar {
+            margin-bottom: 20px;
+            background-color: #ffffff; /* Fond blanc pour la barre de navigation */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+        }
+        .navbar-brand img {
+            max-width: 40px;
+            height: auto;
+        }
+        .container {
+            flex: 1;
+            margin-top: 100px;
+        }
+        .search-bar {
+            margin-bottom: 30px;
+        }
+        .search-bar input {
+            border-radius: 6px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            display: block;
+        }
+        .book {
+            margin-bottom: 30px;
+        }
+        .card {
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 350px; /* Hauteur uniforme pour toutes les cartes */
+    max-width: 250px; /* Largeur uniforme pour toutes les cartes */
+    overflow: hidden;
+    display: flex; /* Permet l'utilisation de flexbox */
+    flex-direction: column; /* Aligne les enfants en colonne */
+}
+        .card-img-top {
+            height: 150px; /* Taille fixe pour l'image de couverture */
+            object-fit: cover; /* Ajuste l'image pour couvrir l'espace sans déformation */
+            border-radius: 12px 12px 0 0; /* Arrondir les coins de l'image */
+        }
+        .card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Équilibre l'espace entre les éléments */
+    flex-grow: 1; /* Permet au corps de la carte de prendre l'espace restant */
+}
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .card-text {
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 75px; /* Limiter la hauteur du texte d'aperçu */
+    flex-grow: 1; /* Permet au texte de prendre l'espace restant */
+}
+        .btn {
+            margin-top: 10px;
+        }
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+            width: 100%;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .reactions {
+            display: flex;
+            justify-content: space-around;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .reaction {
+            transition: transform 0.2s;
+        }
+        .reaction:hover {
+            transform: scale(1.2); /* Agrandit légèrement l'emoji au survol */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Barre de navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/images/hasnreziga.png" alt="Logo">
+            Bibliothèque
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn-accueil" href="/index.html">Accueil</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Section de consultation des livres -->
+<div class="container mt-5">
+    <!-- Barre de recherche -->
+    <div class="search-bar">
+        <input type="text" class="form-control" placeholder="Rechercher un livre...">
+    </div>
+
+    <h2 class="text-center mb-4">Aperçu des Livres</h2>
+    <div class="row">
+        <!-- Livre 1 -->
+        <div class="book">
+            <div class="card">
+                <img src="/images/livre1.jpg" class="card-img-top" alt="Livre 1">
+                <div class="card-body">
+                    <h5 class="card-title">Starting Business</h5>
+                    <p class="card-text">"Starting Business" est un guide essentiel pour les entrepreneurs...</p>
+                    <a href="" class="btn btn-primary btn-block" data-toggle="modal" data-target="#loginModal">Voir le livre complet</a>
+                    <!-- Réactions avec des émojis -->
+                    <div class="reactions mt-3">
+                        <span class="reaction" onclick="addReaction(this, 'like')">👍 <span class="like-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'heart')">❤️ <span class="heart-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'laugh')">😂 <span class="laugh-count">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Livre 2 -->
+        <div class="book">
+            <div class="card">
+                <img src="/images/Livre2.jpg" class="card-img-top" alt="Livre 2">
+                <div class="card-body">
+                    <h5 class="card-title">Love</h5>
+                    <p class="card-text">"Love" est une exploration poignante des divers aspects de l'amour humain...</p>
+                    <a href="#" class="btn btn-primary btn-block" onclick="openTxt('src/main/resources/static/pdfs/test.txt')">Voir le livre complet</a>
+
+
+                    <!-- Réactions avec des émojis -->
+                    <div class="reactions mt-3">
+                        <span class="reaction" onclick="addReaction(this, 'like')">👍 <span class="like-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'heart')">❤️ <span class="heart-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'laugh')">😂 <span class="laugh-count">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Livre 3 -->
+        <div class="book">
+            <div class="card">
+                <img src="/images/book.jpg" class="card-img-top" alt="Livre 3">
+                <div class="card-body">
+                    <h5 class="card-title">How to be alone</h5>
+                    <p class="card-text">................</p>
+                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#loginModal">Voir le livre complet</a>
+                    <!-- Réactions avec des émojis -->
+                    <div class="reactions mt-3">
+                        <span class="reaction" onclick="addReaction(this, 'like')">👍 <span class="like-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'heart')">❤️ <span class="heart-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'laugh')">😂 <span class="laugh-count">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Livre 4 -->
+        <div class="book">
+            <div class="card">
+                <img src="/images/bol.jpeg" class="card-img-top" alt="Livre 4">
+                <div class="card-body">
+                    <h5 class="card-title">Things I thing but I never say</h5>
+                    <p class="card-text">..................</p>
+                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#loginModal">Voir le livre complet</a>
+                    <!-- Réactions avec des émojis -->
+                    <div class="reactions mt-3">
+                        <span class="reaction" onclick="addReaction(this, 'like')">👍 <span class="like-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'heart')">❤️ <span class="heart-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'laugh')">😂 <span class="laugh-count">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Livre 5 -->
+        <div class="book">
+            <div class="card">
+                <img src="/images/bool.jpeg" class="card-img-top" alt="Livre 5">
+                <div class="card-body">
+                    <h5 class="card-title">Things I can't say out loud</h5>
+                    <p class="card-text">...........</p>
+                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#loginModal">Voir le livre complet</a>
+                    <!-- Réactions avec des émojis -->
+                    <div class="reactions mt-3">
+                        <span class="reaction" onclick="addReaction(this, 'like')">👍 <span class="like-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'heart')">❤️ <span class="heart-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'laugh')">😂 <span class="laugh-count">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Livre 6 -->
+        <div class="book">
+            <div class="card">
+                <img src="/images/book.jpg" class="card-img-top" alt="Livre 6">
+                <div class="card-body">
+                    <h5 class="card-title">How to be alone</h5>
+                    <p class="card-text">...............</p>
+                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#loginModal">Voir le livre complet</a>
+                    <!-- Réactions avec des émojis -->
+                    <div class="reactions mt-3">
+                        <span class="reaction" onclick="addReaction(this, 'like')">👍 <span class="like-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'heart')">❤️ <span class="heart-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'laugh')">😂 <span class="laugh-count">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Livre 7 -->
+        <div class="book">
+            <div class="card">
+                <img src="/images/bol.jpeg" class="card-img-top" alt="Livre 7">
+                <div class="card-body">
+                    <h5 class="card-title">Things I think by I never say</h5>
+                    <p class="card-text">Aperçu du livre...</p>
+                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#loginModal">Voir le livre complet</a>
+                    <!-- Réactions avec des émojis -->
+                    <div class="reactions mt-3">
+                        <span class="reaction" onclick="addReaction(this, 'like')">👍 <span class="like-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'heart')">❤️ <span class="heart-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'laugh')">😂 <span class="laugh-count">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Livre 8 -->
+        <div class="book">
+            <div class="card">
+                <img src="/images/boo.jpeg" class="card-img-top" alt="Livre 8">
+                <div class="card-body">
+                    <h5 class="card-title">Thoughts unsaid</h5>
+                    <p class="card-text">Aperçu du livre...</p>
+                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#loginModal">Voir le livre complet</a>
+                    <!-- Réactions avec des émojis -->
+                    <div class="reactions mt-3">
+                        <span class="reaction" onclick="addReaction(this, 'like')">👍 <span class="like-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'heart')">❤️ <span class="heart-count">0</span></span>
+                        <span class="reaction" onclick="addReaction(this, 'laugh')">😂 <span class="laugh-count">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal pour afficher le fichier texte -->
+<div class="modal fade" id="txtModal" tabindex="-1" aria-labelledby="txtModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="txtModalLabel">Contenu du Livre</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <pre id="txtContent" style="white-space: pre-wrap; overflow-wrap: break-word;"></pre> <!-- Utilisez <pre> pour conserver le formatage -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de connexion -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Connexion requise</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Veuillez vous connecter pour accéder à tous les livres.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <a href="/login.html" class="btn btn-primary">Se connecter</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Pied de page -->
+<footer class="footer">
+    <p>&copy; 2024 Bibliothèque en ligne. Tous droits réservés.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function addReaction(element, reactionType) {
+        const bookTitle = element.closest('.card-body').querySelector('.card-title').innerText; // Récupère le titre du livre
+        let reactions = JSON.parse(localStorage.getItem('reactions')) || {};
+
+        // Initialise la réaction pour ce livre s'il n'existe pas encore
+        if (!reactions[bookTitle]) {
+            reactions[bookTitle] = { like: 0, heart: 0, laugh: 0 };
+        }
+
+        // Incrémente la réaction choisie
+        reactions[bookTitle][reactionType] += 1;
+
+        // Met à jour le localStorage
+        localStorage.setItem('reactions', JSON.stringify(reactions));
+
+        // Met à jour l'affichage
+        updateReactionDisplay(bookTitle);
+    }
+
+    function updateReactionDisplay(bookTitle) {
+        const reactions = JSON.parse(localStorage.getItem('reactions')) || {};
+        const reactionCounts = reactions[bookTitle] || { like: 0, heart: 0, laugh: 0 };
+
+        // Met à jour le texte des compteurs de réactions
+        const card = Array.from(document.querySelectorAll('.card-title')).find(card => card.innerText === bookTitle).closest('.card-body');
+        card.querySelector('.like-count').innerText = reactionCounts.like;
+        card.querySelector('.heart-count').innerText = reactionCounts.heart;
+        card.querySelector('.laugh-count').innerText = reactionCounts.laugh;
+    }
+
+    // À l'initialisation de la page, chargez les réactions
+    document.addEventListener('DOMContentLoaded', () => {
+        const reactions = JSON.parse(localStorage.getItem('reactions')) || {};
+        for (const bookTitle in reactions) {
+            updateReactionDisplay(bookTitle);
+        }
+    });
+
+    function openTxt(txtUrl) {
+        fetch(txtUrl)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('txtContent').innerText = data; // Utilisez innerText ici
+                $('#txtModal').modal('show'); // Affiche la modal
+            })
+            .catch(error => console.error('Erreur lors du chargement du fichier texte:', error));
+    }
+</script>
+
+
+
+
+</body>
+</html>

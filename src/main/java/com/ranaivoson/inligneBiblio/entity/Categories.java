@@ -1,6 +1,5 @@
 package com.ranaivoson.inligneBiblio.entity;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -10,15 +9,12 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "auteurs")
-public class Auteur extends Personne {
+@Table(name = "categories")
+public class Categories {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "pseudo")
-    private String pseudo;
-
-    @Column(name = "roles")
-    private String role = "auteur";
+    @Column(name = "nom")
+    private String nom;
 }

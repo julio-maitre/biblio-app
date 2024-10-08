@@ -1,50 +1,39 @@
 package com.ranaivoson.inligneBiblio.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+import lombok.*;
 
 import java.util.Date;
 
-@Entity
-@Getter
+@Data
 @Setter
+@Getter
+@MappedSuperclass
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Table(name = "personne")
 public class Personne {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
-    @Column(name = "nom_pers")
+    @Column(name = "nom")
     private String nom;
 
-    @Column(name = "prenom_pers")
+    @Column(name = "prenom")
     private String prenom;
 
-    @Column(name = "genre_prs")
+    @Column(name = "genre")
     private String genre;
 
-    @Column(name = "email_prs")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password_prs", nullable = false, unique = true)
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "phone_prs")
-    private String phone;
+    @Column(name = "phone")
+    private int phone;
 
-    @Column(name = "dateCreation_prs")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_creation")
     private Date dateCreation;
 
-    @Column(name = "dateUpdate_prs")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateUpdate;
+    @Column(name = "date_update")
+    private Date update;
 }

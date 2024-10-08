@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4a90e2, #9013fe); /* Dégradé */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            animation: fadeInUp 0.8s ease-in-out;
+        }
+        .register-form {
+            padding: 40px;
+            width: 50%;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            max-width: 150px;
+        }
+        .info-section {
+            padding: 40px;
+            background-color: #f4f7fa;
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .info-section p {
+            font-size: 18px;
+            font-weight: 600;
+            color: #555555;
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333333;
+        }
+        .form-group label {
+            font-weight: 500;
+            color: #555555;
+        }
+        .form-control {
+            border-radius: 6px;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            transition: border-color 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #4a90e2;
+            box-shadow: none;
+        }
+        .btn-primary {
+            background-color: #4a90e2;
+            border-color: #4a90e2;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #357ab8;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #ffffff;
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .register-form, .info-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="register-form">
+        <!-- Section Logo -->
+        <div class="logo-container">
+            <img src="/images/hasnreziga.png" alt="Logo de l'entreprise">
+        </div>
+
+        <h2>Inscription</h2>
+
+        <!-- Affichage des erreurs -->
+        <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+
+        <form method="post" action="/lecteur/register">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Adresse e-mail</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+            <a href="/login.html" class="btn btn-secondary btn-block">Se connecter</a>
+        </form>
+
+    </div>
+
+    <!-- Section droite avec la phrase -->
+    <div class="info-section">
+        <p>"Rejoignez notre communauté et accédez à des milliers de livres en un clic."</p>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Bibliothèque. Tous droits réservés.</p>
+</footer>
+
+<!-- JavaScript pour validation des mots de passe -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault();  // Empêche la soumission classique du formulaire
+
+        var username = document.getElementById('username').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Vérifier que les mots de passe correspondent
+        if (password !== confirmPassword) {
+            document.getElementById('error-message').innerText = 'Les mots de passe ne correspondent pas.';
+            document.getElementById('error-message').style.display = 'block';
+            return;
+        }
+
+        // Préparer les données pour l'envoi
+        var lecteurData = {
+            username: username,
+            email: email,
+            password: password
+        };
+
+        // Envoyer les données au back-end via l'API
+        fetch('http://localhost:8082/lecteur/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(lecteurData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error('Erreur HTTP : ' + response.status + ' - ' + text);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+            alert('Inscription réussie!');
+            window.location.href = '/login.html';  // Rediriger vers la page de connexion
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('error-message').innerText = 'Erreur lors de l\'inscription : ' + error.message;
+            document.getElementById('error-message').style.display = 'block';
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

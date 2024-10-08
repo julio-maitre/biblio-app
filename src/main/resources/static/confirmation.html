@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation d'inscription</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2 class="text-center">Confirmation d'inscription</h2>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4 class="card-title">Informations soumises :</h4>
+            <p><strong>Nom d'utilisateur :</strong> <span id="username"></span></p>
+            <p><strong>Adresse e-mail :</strong> <span id="email"></span></p>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript pour récupérer les données de l'URL -->
+<script>
+    // Fonction pour récupérer les paramètres URL
+    function getQueryParams() {
+        const params = {};
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        urlSearchParams.forEach((value, key) => {
+            params[key] = value;
+        });
+        return params;
+    }
+
+    // Récupérer les données et les afficher
+    const params = getQueryParams();
+    document.getElementById('username').textContent = params.username;
+    document.getElementById('email').textContent = params.email;
+</script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

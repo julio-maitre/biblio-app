@@ -1,32 +1,63 @@
 package com.ranaivoson.inligneBiblio.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
+@Data
+@Setter
+@Getter
 @Entity
+@Table(name = "livres")
 public class Livre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "titre")
     private String titre;
-    private int auteurId;
+
+    @ManyToOne
+    @JoinColumn(name = "auteur_id", referencedColumnName = "id")
+    private Auteur auteur;
+
+    @Column(name = "editeur")
     private String editeur;
+
+    @Column(name = "edition")
     private String edition;
-    private int anneeEdition;
-    private int categorieId;
-    private Date dateSortie;
+
+    @Column(name = "date_edition")
+    private Date dateEdition;
+
+    @ManyToOne
+    @JoinColumn(name = "categorie_id", referencedColumnName = "id")
+    private Categories categorie;
+
+    @Column(name = "date_publication")
     private Date datePublication;
+
+    @Column(name = "date_sortie")
+    private Date dateSortie;
+
+    @Column(name = "description")
     private String description;
-    private String imageCouverture;
-    private String fichier;
+
+    @Column(name = "image")
+    private String image;
+
+    @Column(name = "langue")
     private String langue;
 
 
+    @Column(name ="fichier", columnDefinition = "TEXT")
+    private String fichier;
 
+    @Column(name = "status")
+    private String status = "en attente";
 
 }
 

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Styles du formulaire */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4a90e2, #9013fe); /* Dégradé */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease-in-out;
+        }
+        .login-form {
+            padding: 40px;
+            width: 100%;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            max-width: 150px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333333;
+        }
+        .form-group label {
+            font-weight: 500;
+            color: #555555;
+        }
+        .form-control {
+            border-radius: 6px;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            transition: border-color 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #4a90e2;
+            box-shadow: none;
+        }
+        .btn-primary {
+            background-color: #4a90e2;
+            border-color: #4a90e2;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #357ab8;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #ffffff;
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="login-form">
+        <!-- Section Logo -->
+        <div class="logo-container">
+            <img src="/images/hasnreziga.png" alt="Logo de l'entreprise">
+        </div>
+
+        <h2>Connexion</h2>
+
+        <!-- Affichage des erreurs -->
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+
+        <form method="post" th:action="@{/lecteur/login}">
+            <div class="form-group">
+                <label for="email">Adresse e-mail</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+            <a href="/register.html" class="btn btn-secondary btn-block">S'inscrire</a>
+        </form>
+
+
+
+
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Bibliothèque. Tous droits réservés.</p>
+</footer>
+
+<!-- JavaScript pour validation des informations de connexion -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
